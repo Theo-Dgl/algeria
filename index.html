@@ -20,14 +20,21 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: center;
+            max-width: 600px;
+            width: 90%;
         }
         h1 {
             color: #006633; /* Vert foncé du drapeau algérien */
+        }
+        p {
+            color: #333;
+            margin-bottom: 1.5rem;
         }
         input {
             width: 100%;
             padding: 0.5rem;
             margin: 1rem 0;
+            box-sizing: border-box;
         }
         button {
             background-color: #d21034; /* Rouge du drapeau algérien */
@@ -46,6 +53,7 @@
 <body>
     <div class="container">
         <h1>Est-ce algérien ?</h1>
+        <p><strong>Bienvenue sur le site officiel d'estimation d'appartenance à l'Algérie.</strong> Cet outil unique vous permet de déterminer si un mot, une phrase ou une expression a une connotation algérienne. Utilisez-le pour explorer la richesse linguistique et culturelle de l'Algérie !</p>
         <input type="text" id="userInput" placeholder="Entrez un mot ou une phrase">
         <button onclick="checkAlgerian()">Vérifier</button>
         <div id="result"></div>
@@ -76,7 +84,6 @@
             }
         }
 
-        // Fonction pour obtenir les paramètres d'URL
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -84,13 +91,11 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // Fonction pour mettre à jour l'URL
         function updateUrl(text) {
             var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?text=' + encodeURIComponent(text);
             window.history.pushState({path: newUrl}, '', newUrl);
         }
 
-        // Configurer l'entrée et vérifier au chargement de la page
         window.onload = function() {
             var inputText = getUrlParameter('text');
             var userInput = document.getElementById('userInput');
@@ -99,7 +104,6 @@
                 checkAlgerian();
             }
 
-            // Ajouter un écouteur d'événements pour mettre à jour l'URL lors de la saisie
             userInput.addEventListener('input', function() {
                 updateUrl(this.value);
                 checkAlgerian();
