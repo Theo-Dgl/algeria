@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Est-ce algérien ?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #006633; /* Vert foncé du drapeau algérien */
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+        button {
+            background-color: #d21034; /* Rouge du drapeau algérien */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        #result {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Est-ce algérien ?</h1>
+        <input type="text" id="userInput" placeholder="Entrez un mot ou une phrase">
+        <button onclick="checkAlgerian()">Vérifier</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const algerianKeywords = [
+            "dzayer", "chouf", "sahbi", "kho", "wesh", "marhaba",
+            "couscous", "tajine", "oran", "alger", "constantine",
+            "sahara", "casbah", "fennec", "dinar", "rai", "chaabi"
+        ];
+
+        function checkAlgerian() {
+            const input = document.getElementById('userInput').value.toLowerCase();
+            const result = document.getElementById('result');
+            
+            const isAlgerian = algerianKeywords.some(keyword => input.includes(keyword));
+            
+            if (isAlgerian) {
+                result.textContent = "Oui, cela semble être algérien !";
+                result.style.color = "#006633"; // Vert foncé
+            } else {
+                result.textContent = "Non, cela ne semble pas être algérien.";
+                result.style.color = "#d21034"; // Rouge
+            }
+        }
+
+        // Fonction pour obtenir les paramètres d'URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Fonction pour mettre à jour l'URL
+        function updateUrl(text) {
+            var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?text=' + encodeURIComponent(text);
+            window.history.pushState({path: newUrl}, '', newUrl);
+        }
+
+        // Configurer l'entrée et vérifier au chargement de la page
+        window.onload = function() {
+            var inputText = getUrlParameter('text');
+            var userInput = document.getElementById('userInput');
+            if (inputText) {
+                userInput.value = inputText;
+                checkAlgerian();
+            }
+
+            // Ajouter un écouteur d'événements pour mettre à jour l'URL lors de la saisie
+            userInput.addEventListener('input', function() {
+                updateUrl(this.value);
+                checkAlgerian();
+            });
+        };
+    </script>
+</body>
+</html>
