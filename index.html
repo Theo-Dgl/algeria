@@ -25,7 +25,7 @@
             width: 90%;
         }
         h1 {
-            color: #006633; /* Vert foncé du drapeau algérien */
+            color: #006633;
         }
         p {
             color: #333;
@@ -38,7 +38,7 @@
             box-sizing: border-box;
         }
         button {
-            background-color: #d21034; /* Rouge du drapeau algérien */
+            background-color: #d21034;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -66,23 +66,29 @@
             "mohamed", "oussama", "ahmed", "abdelkader", "ali", 
             "hamza", "youcef", "khaled", "abderrahmane", "aymen", 
             "fatima", "fatma", "aïcha", "khira", "yamina", "djamila", 
-            "karima", "samira", "theo","dimeglio","dzayer", "chouf", 
+            "karima", "samira", "theo", "dimeglio", "dzayer", "chouf", 
             "sahbi", "kho", "wesh", "marhaba", "couscous", "tajine", 
             "oran", "alger", "constantine", "sahara", "casbah", "fennec", "dinar", "rai", "chaabi"
         ];
+
+        const tunisianNames = ["romane", "olivieri"];
 
         function checkAlgerian() {
             const input = document.getElementById('userInput').value.toLowerCase();
             const result = document.getElementById('result');
             
-            const isAlgerian = algerianKeywords.some(keyword => input.includes(keyword));
-            
-            if (isAlgerian) {
-                result.textContent = "Oui, cela semble être algérien !";
-                result.style.color = "#006633"; // Vert foncé
+            if (tunisianNames.some(name => input.includes(name))) {
+                result.textContent = "Presque, c'est nos cousins les tounsis";
+                result.style.color = "#006633";
             } else {
-                result.textContent = "Non, cela ne semble pas être algérien.";
-                result.style.color = "#d21034"; // Rouge
+                const isAlgerian = algerianKeywords.some(keyword => input.includes(keyword));
+                if (isAlgerian) {
+                    result.textContent = "Oui, cela semble être algérien !";
+                    result.style.color = "#006633";
+                } else {
+                    result.textContent = "Non, cela ne semble pas être algérien.";
+                    result.style.color = "#d21034";
+                }
             }
         }
 
