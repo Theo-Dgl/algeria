@@ -3,120 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Est-ce algérien ?</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23006633' fill-opacity='0.1'%3E%3Cpath d='M0 0h40v40H0zm40 40h40v40H40z'/%3E%3Cpath d='M20 20a10 10 0 0 1 20 0 10 10 0 0 1-20 0zm40 40a10 10 0 0 1 20 0 10 10 0 0 1-20 0z'/%3E%3C/g%3E%3C/svg%3E");
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-        }
-        h1 {
-            color: #006633;
-        }
-        p {
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-        input {
-            width: 100%;
-            padding: 0.5rem;
-            margin: 1rem 0;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #d21034;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        #result {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-    </style>
+    <title>Juju Traiteur - Menus de la semaine</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Est-ce algérien ?</h1>
-        <p><strong>Bienvenue sur le site officiel d'estimation d'appartenance à l'Algérie.</strong> Cet outil unique vous permet de déterminer si un mot, une phrase ou une expression a une connotation algérienne. Utilisez-le pour explorer la richesse linguistique et culturelle de l'Algérie !</p>
-        <input type="text" id="userInput" placeholder="Entrez un mot ou une phrase">
-        <button onclick="checkAlgerian()">Vérifier</button>
-        <div id="result"></div>
-    </div>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <header class="bg-yellow-50 py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Juju Traiteur</h1>
+            <p class="text-xl text-gray-600">Des plats faits maison avec amour</p>
+        </div>
+    </header>
 
-    <script>
-        const algerianKeywords = [
-            "noemie", "martin",
-            "mohamed", "oussama", "ahmed", "abdelkader", "ali", 
-            "hamza", "youcef", "khaled", "abderrahmane", "aymen", 
-            "fatima", "fatma", "aïcha", "khira", "yamina", "djamila", 
-            "karima", "samira", "theo", "dimeglio", "dzayer", "chouf", 
-            "sahbi", "kho", "wesh", "marhaba", "couscous", "tajine", 
-            "oran", "alger", "constantine", "sahara", "casbah", "fennec", "dinar", "rai", "chaabi"
-        ];
+    <!-- À propos Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl font-semibold text-center mb-8">À propos de Julia</h2>
+            <div class="flex items-center space-x-8">
+                <div class="flex-1">
+                    <img src="/api/placeholder/400/400" alt="Photo de Julia" class="rounded-full w-full max-w-xs mx-auto shadow-lg">
+                </div>
+                <div class="flex-1">
+                    <p class="text-gray-700 leading-relaxed">
+                        Passionnée de cuisine depuis son plus jeune âge, Julia transforme chaque ingrédient en une création culinaire unique. Formée aux techniques traditionnelles françaises, elle met tout son cœur dans la préparation de plats savoureux et réconfortants. Aujourd'hui, elle partage sa passion en proposant un service de traiteur personnalisé pour tous vos repas de la semaine.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const tunisianNames = ["romane", "olivieri"];
+    <!-- Menus de la semaine Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-center mb-12">Menus de la semaine</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Chili con carne Card -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="/api/placeholder/400/300" alt="Chili con carne" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Chili con carne</h3>
+                        <p class="text-gray-600 mb-4">Un plat réconfortant et épicé, préparé avec des haricots rouges, du bœuf haché et un mélange d'épices soigneusement sélectionnées. Servi avec du riz.</p>
+                        <a href="mailto:cheffe-juju@gmail.com?subject=Commande%20Chili%20con%20carne" class="inline-block bg-yellow-500 text-white px-6 py-2 rounded-full hover:bg-yellow-600 transition duration-300">Commander</a>
+                    </div>
+                </div>
 
-        function checkAlgerian() {
-            const input = document.getElementById('userInput').value.toLowerCase();
-            const result = document.getElementById('result');
-            
-            if (tunisianNames.some(name => input.includes(name))) {
-                result.textContent = "Presque, c'est nos cousins les tounsis";
-                result.style.color = "#006633";
-            } else {
-                const isAlgerian = algerianKeywords.some(keyword => input.includes(keyword));
-                if (isAlgerian) {
-                    result.textContent = "Oui, cela semble être algérien !";
-                    result.style.color = "#006633";
-                } else {
-                    result.textContent = "Non, cela ne semble pas être algérien.";
-                    result.style.color = "#d21034";
-                }
-            }
-        }
+                <!-- Suprême de poulet Card -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="/api/placeholder/400/300" alt="Suprême de poulet aux champignons" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Suprême de poulet aux champignons</h3>
+                        <p class="text-gray-600 mb-4">Une délicieuse volaille française accompagnée d'une sauce crémeuse aux champignons frais. Servi avec des pommes de terre rôties.</p>
+                        <a href="mailto:cheffe-juju@gmail.com?subject=Commande%20Suprême%20de%20poulet" class="inline-block bg-yellow-500 text-white px-6 py-2 rounded-full hover:bg-yellow-600 transition duration-300">Commander</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
+    <!-- Call to Action Section -->
+    <section class="py-16 bg-yellow-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-semibold mb-4">Envie de bien manger cette semaine ?</h2>
+            <p class="text-xl text-gray-600 mb-8">Commandez vos plats maintenant pour une livraison en début de semaine</p>
+            <a href="mailto:cheffe-juju@gmail.com?subject=Nouvelle%20commande" class="inline-block bg-yellow-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-yellow-600 transition duration-300">Commander mes plats</a>
+        </div>
+    </section>
 
-        function updateUrl(text) {
-            var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?text=' + encodeURIComponent(text);
-            window.history.pushState({path: newUrl}, '', newUrl);
-        }
-
-        window.onload = function() {
-            var inputText = getUrlParameter('text');
-            var userInput = document.getElementById('userInput');
-            if (inputText) {
-                userInput.value = inputText;
-                checkAlgerian();
-            }
-
-            userInput.addEventListener('input', function() {
-                updateUrl(this.value);
-                checkAlgerian();
-            });
-        };
-    </script>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>Juju Traiteur - Cuisine faite maison avec passion</p>
+            <p class="mt-2">Contact : <a href="mailto:cheffe-juju@gmail.com" class="text-yellow-400 hover:text-yellow-300">cheffe-juju@gmail.com</a></p>
+        </div>
+    </footer>
 </body>
 </html>
